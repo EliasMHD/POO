@@ -1,10 +1,12 @@
-class Telefono:
-    def __init__(self, siguiente=None):
-        self.siguiente = siguiente
+from abc import ABC, abstractmethod
 
+class Telefono(ABC):  
+    def __init__(self, siguiente=None):
+        self._siguiente = siguiente
+
+    @abstractmethod
     def atender(self, atender):
-        if self.siguiente is not None:
-            self.siguiente.atender(atender)
+        pass
 
 
 class Comercial(Telefono):
@@ -26,7 +28,7 @@ class Tecnicos(Telefono):
 tecnicos_handler = Tecnicos()
 comercial_handler = Comercial(tecnicos_handler)
 
-
 comercial_handler.atender("Comercial")
 comercial_handler.atender("Tecnicos")
+
 
